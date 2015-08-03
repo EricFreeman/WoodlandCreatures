@@ -5,14 +5,15 @@ namespace Assets.Scripts.Map
     public class Map : MonoBehaviour
     {
         public Texture2D SpriteSheet;
-        public int TileSize;
+        public int TileWidth;
+        public int TileHeight;
 
         private Texture2D[] _atlastTexture;
 
         void Start()
         {
-            var width = SpriteSheet.width / TileSize;
-            var height = SpriteSheet.height / TileSize;
+            var width = SpriteSheet.width / TileWidth;
+            var height = SpriteSheet.height / TileHeight;
 
             _atlastTexture = new Texture2D[width * height];
 
@@ -20,9 +21,9 @@ namespace Assets.Scripts.Map
             {
                 for (var x = 0; x < width; x++)
                 {
-                    var textureColor = SpriteSheet.GetPixels(x * TileSize, y * TileSize, TileSize, TileSize);
-                    var newTexture = new Texture2D(TileSize, TileSize);
-                    newTexture.SetPixels(0, 0, TileSize, TileSize, textureColor);
+                    var textureColor = SpriteSheet.GetPixels(x * TileWidth, y * TileHeight, TileWidth, TileHeight);
+                    var newTexture = new Texture2D(TileWidth, TileHeight);
+                    newTexture.SetPixels(0, 0, TileWidth, TileHeight, textureColor);
 
                     _atlastTexture[x + y * width] = newTexture;
                 }
